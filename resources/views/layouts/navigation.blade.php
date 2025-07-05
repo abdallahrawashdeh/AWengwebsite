@@ -6,8 +6,8 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                    </a>
+        <img src="{{ asset('images/newlogo.png') }}" width="150" height="30" alt="">
+                        </a>
                 </div>
 
                 <!-- Navigation Links -->
@@ -16,6 +16,35 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('news.index')" :active="request()->routeIs('news.index')">
+                        {{ __('News') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('careerss.index')" :active="request()->routeIs('careerss.index')">
+                        {{ __('Careers') }}
+                    </x-nav-link>
+                </div>
+
+                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('services.index')" :active="request()->routeIs('services.index')">
+                        {{ __('Services') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('projects.index')" :active="request()->routeIs('projects.index')">
+                        {{ __('Projects') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
+                        {{ __('Clients') }}
+                    </x-nav-link>
+                </div>
+
+
+
             </div>
 
             <!-- Settings Dropdown -->
