@@ -1319,7 +1319,7 @@ $newestProjects = isset($projects) ? $projects->sortByDesc('year')->take(3) : co
     class="max-w-lg mx-auto bg-white p-6 rounded-lg  space-y-4"
   >
     <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1">Your email:</label>
+      <label class="block text-sm font-medium text-gray-700 mb-1"> email:</label>
       <input
         type="email"
         name="email"
