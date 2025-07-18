@@ -19,191 +19,51 @@
 </head>
 <body class="h-full">
     <x-header />
+    <x-fixednav />
 <!-- Slider -->
 
-<div id="default-carousel" class="relative w-full max-w-full mx-auto">
-  <!-- Carousel wrapper -->
-  <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-    <!-- Slide 1 -->
-    <div class="duration-700 ease-in-out absolute inset-0 transition-all transform" data-carousel-item style="transform: translateX(0%)">
-      <div class="absolute inset-0 bg-black opacity-90"></div>
-      <img src="{{ asset('images/citybackground.jpg') }}" class="absolute block w-full h-full object-cover" alt="Slide 1">
-      <div class="absolute inset-0 flex items-center justify-center">
-        <h2 class="text-white text-3xl font-bold animate-fadeIn">Welcome To</h2>
-      </div>
-    </div>
-    <!-- Slide 2 -->
-    <div class="duration-700 ease-in-out absolute inset-0 transition-all transform" data-carousel-item style="transform: translateX(100%)">
-      <div class="absolute inset-0 bg-black opacity-90"></div>
-      <img src="{{ asset('images/images2.jpg') }}" class="absolute block w-full h-full object-cover" alt="Slide 2">
-      <div class="absolute inset-0 flex items-center justify-center">
-        <h2 class="text-white text-3xl font-bold animate-fadeIn">Advanced Works Design</h2>
-      </div>
-    </div>
-    <!-- Slide 3 -->
-    <div class="duration-700 ease-in-out absolute inset-0 transition-all transform" data-carousel-item style="transform: translateX(100%)">
-      <div class="absolute inset-0 bg-black opacity-90"></div>
-      <img src="{{ asset('images/images3.jpg') }}" class="absolute block w-full h-full object-cover" alt="Slide 3">
-      <div class="absolute inset-0 flex items-center justify-center">
-        <h2 class="text-white text-3xl font-bold animate-fadeIn">WebSite</h2>
-      </div>
-    </div>
-  </div>
+    <x-slider />
 
-  <!-- Slider indicators -->
-  <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3">
-    <button type="button" class="w-3 h-3 rounded-full bg-white" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-    <button type="button" class="w-3 h-3 rounded-full bg-white/50" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-    <button type="button" class="w-3 h-3 rounded-full bg-white/50" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-  </div>
 
-  <!-- Slider controls -->
-  <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50">
-      <svg class="w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-      </svg>
-      <span class="sr-only">Previous</span>
-    </span>
-  </button>
-  <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50">
-      <svg class="w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-      </svg>
-      <span class="sr-only">Next</span>
-    </span>
-  </button>
-</div>
 
-<style>
-  @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(10px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-  .animate-fadeIn { animation: fadeIn 0.7s ease-out; }
-
-  /* Carousel specific styles */
-  [data-carousel-item] {
-    transition: transform 700ms ease-in-out;
-  }
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const carousel = document.getElementById('default-carousel');
-  const items = Array.from(carousel.querySelectorAll('[data-carousel-item]'));
-  const indicators = Array.from(carousel.querySelectorAll('[data-carousel-slide-to]'));
-  const prevBtn = carousel.querySelector('[data-carousel-prev]');
-  const nextBtn = carousel.querySelector('[data-carousel-next]');
-
-  let currentIndex = 0;
-  let intervalId;
-  const intervalDuration = 3000; // 3 seconds interval
-
-  // Initialize carousel
-  function showSlide(index) {
-    // Update slide positions
-    items.forEach((item, i) => {
-      if (i < index) {
-        item.style.transform = 'translateX(-100%)';
-      } else if (i === index) {
-        item.style.transform = 'translateX(0%)';
-      } else {
-        item.style.transform = 'translateX(100%)';
-      }
-    });
-
-    // Update indicators
-    indicators.forEach((indicator, i) => {
-      indicator.setAttribute('aria-current', i === index);
-      indicator.classList.toggle('bg-white', i === index);
-      indicator.classList.toggle('bg-white/50', i !== index);
-    });
-
-    currentIndex = index;
-  }
-
-  // Next slide
-  function nextSlide() {
-    const nextIndex = (currentIndex + 1) % items.length;
-    showSlide(nextIndex);
-  }
-
-  // Previous slide
-  function prevSlide() {
-    const prevIndex = (currentIndex - 1 + items.length) % items.length;
-    showSlide(prevIndex);
-  }
-
-  // Start auto-rotation
-  function startInterval() {
-    clearInterval(intervalId);
-    intervalId = setInterval(nextSlide, intervalDuration);
-  }
-
-  // Event listeners
-  nextBtn.addEventListener('click', () => {
-    clearInterval(intervalId);
-    nextSlide();
-    startInterval();
-  });
-
-  prevBtn.addEventListener('click', () => {
-    clearInterval(intervalId);
-    prevSlide();
-    startInterval();
-  });
-
-  indicators.forEach((indicator, index) => {
-    indicator.addEventListener('click', () => {
-      clearInterval(intervalId);
-      showSlide(index);
-      startInterval();
-    });
-  });
-
-  // Initialize
-  showSlide(0);
-  startInterval();
-
-  // Pause on hover
-  carousel.addEventListener('mouseenter', () => clearInterval(intervalId));
-  carousel.addEventListener('mouseleave', startInterval);
-});
-</script>
  <!-- end of Slider -->
 
 
 <div class="w-full mt-0 bg-white rounded-xl shadow-2xl p-5 md:p-5 lg:p-20 animate-fadeInUp">
   <h3 class="text-3xl font-bold text-gray-800 mb-4 border-b-2 pb-2 border-[#e9bc64]">
-     Advanced Works Engineering Introuction:
+     Advanced Works Engineering Overview:
   </h3>
   <p id="description" class="text-gray-600 leading-relaxed text-lg overflow-hidden transition-[max-height] duration-500 max-h-20">
-    Established in2016,our engineering firm is a comprehensive
-    provider of all engineering disciplines <br>
+   Welcome to Advanced Works
+Engineering Company , where we
+are dedicated to providing
+comprehensive engineering services
+to our clients, including property
+developers, project owners, and
+contractors. Our company was
+established with the mission of
+advancing engineering practices and
+enhancing quality standards in the
+engineering sector. <br>
 
 
-    With a dedicated team of professionals, we offer a wide
-range of engineering services to meet the needs of our
-clients. <br>
+We leverage our extensive
+experience and knowledge to serve
+our clients, with a carefully selected
+team of highly skilled engineers
+aligned with our vision to position
+our company among the top-tier
+firms in the fieled. We strive for
+excellence and innovation in every
+project we undertake, ensuring our
+clients' success and achieving their
+goals efficiently and professionally. <br>
 
 
-Our commitment to excellence and innovation sets us apart,
-and we take pride in delivering high-quality solutions across
-various engineering sectors <br>
-
-where we are dedicated to providing comprehensive engineering services to
-our clients, including property developers, project owners, and contractors. Our
-company was established with the mission of advancing engineering practices
-and enhancing quality standards in the engineering sector. <br>
-We leverage our extensive experience and knowledge to serve our clients, with
-a carefully selected team of highly skilled engineers aligned with our vision to
-position our company among the top-tier firms in the field. <br>
-We strive for excellence and innovation in every project we undertake, ensuring
-our clients' success and achieving their goals efficiently and professionally.
-In summary, we are your ideal partner for all engineering service needs, and we
-are committed to delivering the best
+In summary, we are your ideal
+partner for all engineering service
+needs, and we are committed to
+delivering the best
   </p>
 
 
@@ -248,7 +108,27 @@ are committed to delivering the best
   <!------------------------------------------------------------------------------------>
 
 
+<div class="w-full bg-white py-10 px-4 sm:px-10">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 shadow-lg rounded-3xl border border-gray-200 p-6 md:p-10 hover:shadow-2xl transition-all duration-300">
+        <!-- Image Section -->
+        <div class="flex-shrink-0">
+            <img src="{{ asset('images/adelimg.png') }}" alt="Eng. Adel"
+                class="w-40 h-40 md:w-48 md:h-48 rounded-full object-cover border-4 border-blue-100 shadow-md" />
+        </div>
 
+        <!-- Text Section -->
+        <div class="text-center md:text-left flex-1">
+            <h2 class="text-3xl font-bold text-gray-800">Eng. Adel</h2>
+            <p class="text-lg text-gray-600 mt-2">Founder &amp; General Manager</p>
+            <a href="#" class="text-blue-600 mt-2 inline-block hover:underline transition">AW Company</a>
+
+            <!-- Optional Description -->
+            <p class="mt-4 text-sm text-gray-500 leading-relaxed max-w-xl">
+                Passionate about innovation and leadership, Eng. Adel has dedicated his career to building solutions that empower businesses and teams. His vision drives AW Company forward.
+            </p>
+        </div>
+    </div>
+</div>
 
 
 
@@ -267,7 +147,7 @@ are committed to delivering the best
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto">
     <div class="flex flex-nowrap gap-6 min-w-max"> <!-- Changed to min-w-max -->
       <!-- Counter Boxes (same as your code) -->
-<div class="counter-box bg-black/20 rounded-lg shadow-md p-6 flex items-center space-x-4 w-64 shrink-0">
+<div class="counter-box bg-black/40 rounded-lg shadow-md p-6 flex items-center space-x-4 w-64 shrink-0">
         <i data-feather="folder" class="text-blue-500 w-10 h-10"></i>
         <div>
           <p class="text-white font-medium">Total Projects</p>
@@ -275,7 +155,7 @@ are committed to delivering the best
         </div>
       </div>
 
-<div class="counter-box bg-black/20 rounded-lg shadow-md p-6 flex items-center space-x-4 w-64 shrink-0">
+<div class="counter-box bg-black/40 rounded-lg shadow-md p-6 flex items-center space-x-4 w-64 shrink-0">
         <i data-feather="users" class="text-green-500 w-10 h-10"></i>
         <div>
           <p class="text-white font-medium">Total Clients</p>
@@ -283,7 +163,7 @@ are committed to delivering the best
         </div>
       </div>
 
-<div class="counter-box bg-black/20 rounded-lg shadow-md p-6 flex items-center space-x-4 w-64 shrink-0">
+<div class="counter-box bg-black/40 rounded-lg shadow-md p-6 flex items-center space-x-4 w-64 shrink-0">
         <i data-feather="user-check" class="text-purple-500 w-10 h-10"></i>
         <div>
           <p class="text-white font-medium">Total Employees</p>
@@ -291,7 +171,7 @@ are committed to delivering the best
         </div>
       </div>
 
-<div class="counter-box bg-black/20 rounded-lg shadow-md p-6 flex items-center space-x-4 w-64 shrink-0">
+<div class="counter-box bg-black/40 rounded-lg shadow-md p-6 flex items-center space-x-4 w-64 shrink-0">
         <i data-feather="globe" class="text-red-500 w-10 h-10"></i>
         <div>
           <p class="text-white font-medium">Total Countries</p>
@@ -299,7 +179,7 @@ are committed to delivering the best
         </div>
       </div>
 
-<div class="counter-box bg-black/20 rounded-lg shadow-md p-6 flex items-center space-x-4 w-64 shrink-0">
+<div class="counter-box bg-black/40 rounded-lg shadow-md p-6 flex items-center space-x-4 w-64 shrink-0">
         <i data-feather="map-pin" class="text-yellow-500 w-10 h-10"></i>
         <div>
           <p class="text-white font-medium">Total Cities</p>
@@ -397,104 +277,13 @@ are committed to delivering the best
 
 
 
+
  <!-----------------------------------------hero------------------------------------------->
-@php
-    $imagePaths = [
-        asset('Certifications/Certificationspmp.png'),
-        asset('Certifications/CertificationsATD.png'),
-        asset('Certifications/Certificationsfire.png'),
-        asset('Certifications/CertificationsICA.png'),
-        asset('Certifications/CertificationsISO.png'),
-    ];
-@endphp
-
-<div class="relative flex flex-col items-center mx-auto lg:flex-row-reverse lg:max-w-5xl lg:mt-12 xl:max-w-6xl">
-
-    <!-- Image Column -->
-    <div class="w-full flex justify-center items-center h-80 lg:w-1/2 lg:h-auto bg-white">
-        <img
-            id="slideshowImage"
-            src="{{ $imagePaths[0] }}"
-            class="w-80 h-80 object-contain transition-all duration-700"
-            alt="Certification Image"
-        >
-    </div>
-
-    <!-- Text Column -->
-    <div class="max-w-lg bg-white md:max-w-2xl md:z-10 md:shadow-lg md:absolute md:top-0 md:mt-48 lg:w-3/5 lg:left-0 lg:mt-20 lg:ml-20 xl:mt-24 xl:ml-12">
-        <div class="flex flex-col p-12 md:px-16">
-            <h2 id="typing-text" class="text-3xl font-medium uppercase text-[#e9bc64] lg:text-7xl whitespace-nowrap overflow-hidden border-r-2 border-[#e9bc64]">
-            </h2>
-        </div>
-    </div>
-</div>
-
-<style>
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-@keyframes blink {
-  0%, 100% { border-color: transparent }
-  50% { border-color: #e9bc64 } /* Tailwind green-800 */
-}
-
-.animate-typing {
-  width: 0;
-  animation: typing 2s steps(20, end) forwards, blink 0.7s step-end infinite;
-  white-space: nowrap;
-  overflow: hidden;
-  display: inline-block;
-}
-</style>
-
-<script>
-const text = "Certifications";
-const el = document.getElementById("typing-text");
-
-let i = 0;
-let hasTyped = false;
-
-function typeWriter() {
-  if (i < text.length) {
-    el.textContent += text.charAt(i);
-    i++;
-    setTimeout(typeWriter, 100);
-  } else {
-    el.classList.add('animate-typing');
-  }
-}
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && !hasTyped) {
-      hasTyped = true;        // Mark that typing started
-      typeWriter();
-      observer.disconnect();  // Stop observing immediately
-    }
-  });
-}, { threshold: 0.5 });
-
-observer.observe(el);
-
-</script>
-
-<script>
-    const images = @json($imagePaths);
-    let current = 0;
-    const imageEl = document.getElementById("slideshowImage");
-
-    setInterval(() => {
-        current = (current + 1) % images.length;
-        imageEl.src = images[current];
-    }, 2000); // Change image every 2 seconds
-</script>
 
 
  <!----------------------------------------end of hero--------------------------------------->
 
-     <x-fixednav />
+
 
 <!-------------------------------------------------------------------------------------------------------->
 
@@ -648,7 +437,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     <!---------------------------------------------------------------------------------------------------->
 
-
+    <x-certificationslider />
     <!---------------------------Ours----------------------------------------------------------------------------------->
 
 
