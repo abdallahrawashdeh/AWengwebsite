@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>AW eng</title>
      @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
@@ -109,18 +109,18 @@ delivering the best
 
 
 <div class="w-full bg-white py-10 px-4 sm:px-10">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 shadow-lg rounded-3xl border border-gray-200 p-6 md:p-10 hover:shadow-2xl transition-all duration-300">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 shadow-lg  border border-gray-200 p-6 md:p-10 hover:shadow-2xl transition-all duration-300">
         <!-- Image Section -->
         <div class="flex-shrink-0">
             <img src="{{ asset('images/adelimg.png') }}" alt="Eng. Adel"
-                class="w-40 h-40 md:w-48 md:h-48 rounded-full object-cover border-4 border-blue-100 shadow-md" />
+                class="w-40 h-40 md:w-48 md:h-48 rounded-full object-cover border-4 border-white shadow-md" />
         </div>
 
         <!-- Text Section -->
         <div class="text-center md:text-left flex-1">
             <h2 class="text-3xl font-bold text-gray-800">Eng. Adel</h2>
             <p class="text-lg text-gray-600 mt-2">Founder &amp; General Manager</p>
-            <a href="#" class="text-blue-600 mt-2 inline-block hover:underline transition">AW Company</a>
+            <span href="#" class="text-[#e8bb5b] mt-2 inline-block hover:underline transition">AW Company</span>
 
             <!-- Optional Description -->
             <p class="mt-4 text-sm text-gray-500 leading-relaxed max-w-xl">
@@ -755,10 +755,7 @@ agile and responsive to emerging trends and the needs of a dynamic field</p>
     </div>
   </section>
   <!-- ====== Services Section End -->
-<span class="relative flex size-3 bottom-[100px] left-[5%]">
-  <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#e9bc64] opacity-75"></span>
-  <span class="relative inline-flex size-3 rounded-full bg-[#e9bc64]"></span>
-</span>
+
 
 
 <!---------------------------------------------- our projects ---------------------------------------->

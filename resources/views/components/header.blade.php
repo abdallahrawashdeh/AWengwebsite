@@ -1,24 +1,26 @@
-<header class="shadow">
-  <div class="relative flex max-w-screen-xl flex-col overflow-hidden px-4 py-4 md:mx-auto md:flex-row md:items-center">
-    <a href="#" class="flex items-center whitespace-nowrap text-2xl font-black">
-      <span class="mr-2 text-4xl text-blue-600">
-        <img src="{{ asset('images/newlogo.png') }}" width="150" height="30" alt="">
-      </span>
+<header class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-4 md:px-6">
+    <!-- Logo -->
+    <a href="/" class="flex items-center space-x-2">
+      <img src="{{ asset('images/newlogo.png') }}" alt="Logo" class="h-10 w-auto" />
     </a>
-    <input type="checkbox" class="peer hidden" id="navbar-open" />
-    <label class="absolute top-5 right-7 cursor-pointer md:hidden" for="navbar-open">
-      <span class="sr-only">Toggle Navigation</span>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+
+    <!-- Hamburger (Mobile) -->
+    <input type="checkbox" id="navbar-toggle" class="hidden peer" />
+    <label for="navbar-toggle" class="md:hidden cursor-pointer">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </label>
-    <nav aria-label="Header Navigation" class="peer-checked:mt-8 peer-checked:max-h-56 flex max-h-0 w-full flex-col items-center justify-between overflow-hidden transition-all md:ml-24 md:max-h-full md:flex-row md:items-start">
-      <ul class="flex flex-col items-center space-y-2 md:ml-auto md:flex-row md:space-y-0">
-        <li class="text-gray-600 md:mr-12 hover:text-[#e9bc64]"><a href="/">Home</a></li>
-        <li class="text-gray-600 md:mr-12 hover:text-[#e9bc64]"><a href="/allnews">All News</a></li>
-        <li class="text-gray-600 md:mr-12 hover:text-[#e9bc64]"><a href="/team">Team</a></li>
-        <li class="text-gray-600 md:mr-12 hover:text-[#e9bc64]"><a href="/careers">Careers</a></li>
-      </ul>
+
+    <!-- Navigation Links -->
+    <nav
+      class="peer-checked:flex hidden flex-col md:flex md:flex-row md:items-center gap-6 md:gap-10 absolute md:static top-full left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none px-6 py-4 md:p-0">
+      <a href="/" class="text-gray-700 hover:text-[#e9bc64] transition-colors font-medium">Home</a>
+      <a href="/allnews" class="text-gray-700 hover:text-[#e9bc64] transition-colors font-medium">All News</a>
+      <a href="/team" class="text-gray-700 hover:text-[#e9bc64] transition-colors font-medium">Team</a>
+      <a href="/careers" class="text-gray-700 hover:text-[#e9bc64] transition-colors font-medium">Careers</a>
     </nav>
   </div>
 </header>

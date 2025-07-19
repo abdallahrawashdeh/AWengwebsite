@@ -1,6 +1,6 @@
 <div id="default-carousel" class="relative w-full max-w-full mx-auto">
   <!-- Carousel wrapper -->
-  <div class="relative h-56 overflow-hidden md:h-[500px]">
+  <div class="relative h-56 overflow-hidden md:h-96">
     <!-- Slide 1 -->
     <div class="duration-700 ease-in-out absolute inset-0 transition-all transform" data-carousel-item style="transform: translateX(0%)">
       <div class="absolute inset-0 bg-black opacity-90"></div>
