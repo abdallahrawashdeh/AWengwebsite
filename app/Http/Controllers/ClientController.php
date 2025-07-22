@@ -13,7 +13,7 @@ class ClientController extends Controller
 public function public()
 {
     $careers = Client::latest()->get(); // You missed this line earlier
-    return view('Test', compact('clients'));
+    return view('Index', compact('clients'));
 }
 
 public function index()

@@ -27,7 +27,7 @@ Route::get('/', function () {
     $projects = Project::with('user')->latest()->get();
     $clients = Client::with('user')->latest()->get();
 
-    return view('Test', compact('services', 'news' , 'projects' , 'clients'));
+    return view('Index', compact('services', 'news' , 'projects' , 'clients'));
 });
 
 // DASHBOARD (authenticated only)
